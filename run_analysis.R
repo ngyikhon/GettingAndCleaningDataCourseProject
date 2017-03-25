@@ -61,4 +61,4 @@ dataDT <- data.table(data)
 tidyData<- dataDT[, lapply(.SD, mean), by=c("subjectId", "activity")]
 
 ## Step 11: Write the tidied data to the file "tidy_data.txt"
-write.table(tidyData, "tidy_data.txt")
+write.table(tidyData, "tidy_data.txt", row.name=FALSE)
