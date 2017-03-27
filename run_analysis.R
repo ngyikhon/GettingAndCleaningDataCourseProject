@@ -49,7 +49,9 @@ names(X) <- gsub("\\(|\\)", "", features$featureLabel[includedFeatures])
 names(Y) = "activityId"
 
 ## Step 7:  Replaced activity IDs with the activity labels for readability
-activity <- merge(Y, activities, by="activityId")$activityLabel
+Y$id <- 1:nrow(Y)
+mergeActivity <- merge(activities, Y, by="activityId")
+activity <- mergeActivity[order(mergeActivity$id),c("activityLabel")]
   
 ## Step 8:  Combined the data frames to produce one data frame containing the subjects, measurements and activities
 data <- cbind(subject, X, activity)
